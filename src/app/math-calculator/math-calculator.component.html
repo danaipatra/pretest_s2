@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="first-column">
+        <input type="number" [value]="0" #val (keyup)="onChange(val, chooseType)">
+    </div>
+    <div class="second-column">
+        <select #chooseType (change)="onChange(val, chooseType)">
+            <option [value]="false" selected>isPrime</option>
+            <option [value]="true">isFinacci</option>
+        </select>
+    </div>
+    <div class="third-column">
+        <p *ngFor="let item of answer">{{item}}</p>
+    </div>
+</div>

@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "exam"
+  "defaultProject": "exam",
+  "cli": {
+    "analytics": "9019b47f-db2a-49dd-9f45-0e6a222a1678"
+  }
 }
