@@ -11,7 +11,7 @@ export class PublicapisService {
     private http: HttpClient
   ) { }
 
-  getCategories(): Observable<string[]> {
-    return this.http.get<string[]>(`https://api.publicapis.org/categories`);
+  getCategories(): Observable<{count: number, categories: string[]}> {
+    return this.http.get<{count: number, categories: string[]}>(`https://api.publicapis.org/categories`);
   }
 }

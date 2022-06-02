@@ -11,7 +11,7 @@ import { map, share, switchMap } from 'rxjs/operators';
 export class PublicapisComponent implements OnInit {
   categories$: Observable<string[]>;
   search$ = new BehaviorSubject("");
-  categoriesVal$: Observable<string[]>;
+  categoriesVal$: Observable<{count: number, categories: string[]}>;
 
   constructor(private publicapisService: PublicapisService) {}
 
@@ -19,10 +19,10 @@ export class PublicapisComponent implements OnInit {
     this.categoriesVal$ = this.publicapisService.getCategories();
     this.categories$ = this.search$.pipe(switchMap(resp => {
       if (resp.length === 0) {
-        return this.categoriesVal$
+        return this.categoriesVal$.pipe(map(data => data.categories));
       } else {
         return this.categoriesVal$.pipe(map(item => {
-          return item.filter(result => {
+          return item.categories.filter(result => {
             const key = [result];
             return key.some(attr => attr.toLowerCase().includes(resp.toLowerCase()));
           });
